@@ -6,9 +6,17 @@ A containerized computer vision inference platform for asynchronous image proces
 
 ## Screenshots
 
-| Upload | Async processing |
-|---|---|
-| ![Upload](docs/images/upload.png) | ![Processing](docs/images/processing.png) |
+### Upload
+
+![Cloud AI CV Platform Upload](docs/images/upload.png)
+
+### Async Processing
+
+![Cloud AI CV Platform Processing](docs/images/processing.png)
+
+### Inference Result
+
+![YOLO Object Detection Result](docs/images/result.png)
 
 ## Overview
 
@@ -104,7 +112,7 @@ cloud-ai-cv-platform/
 * Git
 * Node.js
 
-### 1. Clone the repositorygit clone 
+### 1. Clone the repository
 ```bash
 git clone https://github.com/ishapageni/cloud-ai-cv-platform.git
 cd cloud-ai-cv-platform
@@ -239,7 +247,6 @@ This keeps the environment reproducible and makes the worker architecture easier
 * GPU-enabled inference
 * Kubernetes deployment
 * Cloud deployment
-* CI/CD pipeline
 
 ## Security
 

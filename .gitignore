@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+.env
+
+# Jupyter
+.ipynb_checkpoints/
+
+# YOLO / ML model files
+*.pt
+*.onnx
+*.engine
+
+# Runtime data
+backend/uploads/
+backend/results/
+
+# Logs
+*.log
+
+# macOS
+.DS_Store
+
+# Node
+frontend/node_modules/
+frontend/.next/
+
+# Local Docker / generated data
+postgres_data/
+seaweedfs_data/
+
+# Local SeaweedFS credentials
+seaweedfs/s3.json

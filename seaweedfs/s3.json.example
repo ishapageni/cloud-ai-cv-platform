@@ -1,0 +1,19 @@
+{
+  "identities": [
+    {
+      "name": "cloudai",
+      "credentials": [
+        {
+          "accessKey": "cloudai",
+          "secretKey": "change_me"
+        }
+      ],
+      "actions": [
+        "Admin",
+        "Read",
+        "Write",
+        "List"
+      ]
+    }
+  ]
+}

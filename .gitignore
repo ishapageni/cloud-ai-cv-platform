@@ -34,3 +34,4 @@ seaweedfs_data/
 
 # Local SeaweedFS credentials
 seaweedfs/s3.json
+docker-compose.override.yml

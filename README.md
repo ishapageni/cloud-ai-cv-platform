@@ -59,8 +59,8 @@ The platform separates API handling from model inference using a Redis-backed jo
                     │ Annotated Image │
                     │ + Detections    │
                     └─────────────────┘
-
-Processing Pipeline
+```
+## Processing Pipeline
 
 1. User uploads an image from the Next.js dashboard.
 2. FastAPI temporarily stores the input.
@@ -77,49 +77,22 @@ Processing Pipeline
 13. The frontend polls the job endpoint and displays the completed result.
 
 
-Tech Stack
+## Tech Stack
 
-Layer
+| Layer | Technology |
+|---|---|
+| Frontend | Next.js, TypeScript |
+| Backend | FastAPI, Python |
+| Computer Vision | Ultralytics YOLO, OpenCV, Pillow |
+| Database | PostgreSQL |
+| Job Queue | Redis |
+| Object Storage | SeaweedFS S3 API |
+| Containerization | Docker, Docker Compose |
+| API | REST |
+|Model | YOLO11n |
 
-Technology
-
-Frontend
-
-Next.js, TypeScript
-
-Backend
-
-FastAPI, Python
-
-Computer Vision
-
-Ultralytics YOLO, OpenCV/Pillow
-
-Database
-
-PostgreSQL
-
-Job Queue
-
-Redis
-
-Object Storage
-
-SeaweedFS S3 API
-
-Containerization
-
-Docker, Docker Compose
-
-API
-
-REST
-
-Model
-
-YOLO11n
-
-Project Structure
+## Project Structure
+```
 cloud-ai-cv-platform/
 ├── backend/
 │   ├── app/
@@ -146,34 +119,44 @@ cloud-ai-cv-platform/
 ├── docker-compose.yml
 ├── .env.example
 └── .gitignore
+```
+## Running Locally
 
-Running Locally
-
-Prerequisites
+### Prerequisites
 
 * Docker Desktop
 * Git
 * Node.js
 
-1. Clone the repositorygit clone https://github.com/ishapageni/cloud-ai-cv-platform.git
+### 1. Clone the repositorygit clone 
+```bash
+git clone https://github.com/ishapageni/cloud-ai-cv-platform.git
 cd cloud-ai-cv-platform
+```
+### 2. Configure environment variables
 
-2. Configure environment variables
-
-Create a local .env file from the example:cp .env.example .env
-
+Create a local .env file from the example:
+```bash
+ cp .env.example .env
+```
 Update the values in .env as required.
 
 The .env file is intentionally excluded from Git.
 
-3. Configure SeaweedFS
+### 3. Configure SeaweedFS
 
-Create the local S3 configuration:cp seaweedfs/s3.json.example seaweedfs/s3.json
+Create the local S3 configuration:
+```bash
+cp seaweedfs/s3.json.example seaweedfs/s3.json
+```
 Update the local credentials if necessary.
 
 seaweedfs/s3.json is excluded from Git.
-4. Start the backend infrastructure
+
+### 4. Start the backend infrastructure
+```bash
 docker compose up -d
+```
 This starts:
 
 * PostgreSQL
@@ -181,37 +164,54 @@ This starts:
 * SeaweedFS
 * FastAPI backend
 * CV worker
-5. Start the frontend
+
+### 5. Start the frontend
+```bash
 cd frontend
 npm install
 npm run dev
+```
 The dashboard will be available at:
-http://localhost:3000
+```http://localhost:3000```
+
 The FastAPI backend runs on:
-http://localhost:8000
-API Endpoints
+```http://localhost:8000```
 
-Health CheckGET /health
+## API Endpoints
 
+### Health Check
+```http
+GET /health
+```
 Checks whether the API is running.
 
-Submit Image
+### Submit Image
+```http
 POST /predict
+```
 Uploads an image and creates an asynchronous inference job.
 
-Get Job
+### Get Job
+```http
 GET /jobs/{job_id}
+```
 Returns the current job status and detection information.
 
-List Jobs
+### List Jobs
+```http
 GET /jobs
+```
 Returns previously processed jobs.
 
-Get Result
+### Get Result
+```http
 GET /result/{job_id}
+```
 Returns the annotated result image.
-Example Detection
 
+### Example Detection
+
+```JSON
 A completed job returns detection metadata containing:
 {
   "class_id": 0,
@@ -224,30 +224,31 @@ A completed job returns detection metadata containing:
     "y2": 462.1
   }
 }
+```
 
-Design Decisions
+## Design Decisions
 
-Asynchronous inference
+### Asynchronous inference
 
 Model inference is separated from the API server using Redis.
 
 This prevents long-running inference operations from blocking the request-handling layer and allows additional workers to be added later.
 
-Object storage
+### Object storage
 
 Input and output images are stored in SeaweedFS through its S3-compatible API rather than relying on the backend container filesystem.
 
-Persistent metadata
+### Persistent metadata
 
 PostgreSQL stores job lifecycle information and individual detections, allowing the frontend to display inference history and structured detection statistics.
 
-Containerized services
+### Containerized services
 
 The backend and CV worker use the same Docker image while running different processes.
 
 This keeps the environment reproducible and makes the worker architecture easier to scale.
 
-Future Improvements
+### Future Improvements
 
 * Horizontal CV worker scaling
 * Model registry
@@ -264,15 +265,14 @@ Future Improvements
 * Cloud deployment
 * CI/CD pipeline
 
-Security
+## Security
 
 Secrets are provided through environment variables and local configuration files.
 
 The following files are intentionally excluded from Git:
+```
 .env
 seaweedfs/s3.json
+```
 Only example configuration files containing placeholder values are committed.
 
-License
-
-This project is intended as a learning and portfolio project.

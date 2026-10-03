@@ -2,6 +2,14 @@
 
 A containerized computer vision inference platform for asynchronous image processing using YOLO, FastAPI, Redis, PostgreSQL, SeaweedFS, Docker, and Next.js.
 
+![Detection result](docs/images/result.png)
+
+## Screenshots
+
+| Upload | Async processing |
+|---|---|
+| ![Upload](docs/images/upload.png) | ![Processing](docs/images/processing.png) |
+
 ## Overview
 
 Cloud AI CV Platform allows users to upload images through a web dashboard and submit them for asynchronous computer vision inference.

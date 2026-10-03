@@ -8,6 +8,12 @@ Cloud AI CV Platform allows users to upload images through a web dashboard and s
 
 The platform separates API handling from model inference using a Redis-backed job queue and a dedicated CV worker.
 
+## System Architecture
+
+The platform uses an asynchronous inference architecture with FastAPI, Redis, PostgreSQL, SeaweedFS, and a dedicated YOLO inference worker.
+
+See the detailed [system architecture](docs/architecture.md).
+
 ### Key capabilities
 
 - Image upload through a Next.js web interface

@@ -27,45 +27,7 @@ See the detailed [system architecture](docs/architecture.md).
 - Dockerized backend and worker services
 - Persistent PostgreSQL and object-storage volumes
 
-## Architecture
-
-```text
-                    ┌─────────────────────┐
-                    │      Next.js UI     │
-                    │   TypeScript + CSS  │
-                    └──────────┬──────────┘
-                               │
-                               ▼
-                    ┌─────────────────────┐
-                    │      FastAPI        │
-                    │       Backend       │
-                    └──────┬───────┬──────┘
-                           │       │
-                ┌──────────┘       └──────────┐
-                ▼                             ▼
-       ┌─────────────────┐          ┌─────────────────┐
-       │   PostgreSQL    │          │    SeaweedFS    │
-       │ Jobs + Results  │          │ Images/Results  │
-       └─────────────────┘          └─────────────────┘
-                           │
-                           ▼
-                    ┌─────────────────┐
-                    │      Redis      │
-                    │    Job Queue    │
-                    └────────┬────────┘
-                             │
-                             ▼
-                    ┌─────────────────┐
-                    │    CV Worker    │
-                    │ YOLO Inference  │
-                    └────────┬────────┘
-                             │
-                             ▼
-                    ┌─────────────────┐
-                    │ Annotated Image │
-                    │ + Detections    │
-                    └─────────────────┘
-```
+  
 ## Processing Pipeline
 
 1. User uploads an image from the Next.js dashboard.
